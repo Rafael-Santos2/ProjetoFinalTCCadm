@@ -5,25 +5,30 @@ include __DIR__ . '/inc/conexao.php';
 $msg = '';
 $msg_tipo = '';
 
+// PIN de segurança para cadastro (altere este valor para maior segurança)
+define('PIN_CADASTRO', '2025');
+
 // Verificar se há algum admin logado OU se não existe nenhum usuário no sistema
 $is_logged_admin = isset($_SESSION['usuario_id']) && $_SESSION['usuario_role'] === 'admin';
 $check_users = $conn->query("SELECT COUNT(*) as total FROM usuarios");
 $has_users = ($check_users && $check_users->fetch_assoc()['total'] > 0);
 
-// Se não é admin logado E já existem usuários, bloquear acesso
-if (!$is_logged_admin && $has_users) {
-    die('Acesso negado. Apenas administradores podem cadastrar novos usuários. <a href="login.php">Fazer login</a>');
-}
+// Se não é admin logado E já existem usuários, exigir PIN
+$requires_pin = !$is_logged_admin && $has_users;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome = trim($_POST['nome'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $senha = $_POST['senha'] ?? '';
     $role = $_POST['role'] ?? 'policia';
+    $pin = trim($_POST['pin'] ?? '');
 
     // Validações
     if (empty($nome) || empty($email) || empty($senha)) {
         $msg = 'Todos os campos são obrigatórios';
+        $msg_tipo = 'error';
+    } elseif ($requires_pin && $pin !== PIN_CADASTRO) {
+        $msg = 'PIN de segurança inválido. Contate o administrador do sistema.';
         $msg_tipo = 'error';
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $msg = 'Email inválido';
@@ -278,6 +283,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <label class="form-label">Senha</label>
                         <input class="form-control" type="password" name="senha" placeholder="Digite a senha (mínimo 6 caracteres)" required>
                     </div>
+                    <?php if ($requires_pin): ?>
+                    <div class="mb-3">
+                        <label class="form-label">PIN de Segurança <span style="color: #e74c3c;">*</span></label>
+                        <input class="form-control" type="password" name="pin" placeholder="Digite o PIN fornecido pelo administrador" required maxlength="10">
+                        <small style="color: #666; font-size: 12px;">Solicite o PIN ao responsável pelo sistema</small>
+                    </div>
+                    <?php endif; ?>
                     <?php if ($has_users): ?>
                     <div class="mb-3">
                         <label class="form-label">Tipo de Usuário</label>
