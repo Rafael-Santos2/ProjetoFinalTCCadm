@@ -3,8 +3,14 @@ session_start();
 // incluir conexão centralizada
 include __DIR__ . '/inc/conexao.php';
 if (!isset($_SESSION['usuario_id'])) {
-  header('Location: login.php');
+  header('Location: index.php');
   exit;
+}
+
+// Definir base_url para o header
+$base_url = getenv('BASE_URL');
+if (!$base_url) {
+    $base_url = 'https://projetofinaltccadm-production.up.railway.app';
 }
 
 $id = intval($_GET['id'] ?? 0);
@@ -119,10 +125,6 @@ $logsRes = $logs->get_result();
     .spacer_header {
       height: calc(var(--header-height, 80px) + 8px);
       /* ajuste conforme a altura do header */
-    }
-
-    footer {
-      display: none;
     }
 
     /* responsividade para telas menores - empilhar colunas */
