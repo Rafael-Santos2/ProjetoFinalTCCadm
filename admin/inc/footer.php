@@ -11,8 +11,8 @@ if (!$base_url) {
         <div class="container-footer">
             <!-- LOGOS NO TOPO -->
             <div class="header-footer">
-                <img src="<?= htmlspecialchars($base_url) ?>/assets/Logo%20infantil.png" alt="Logo Voz Infantil">
-                <img src="<?= htmlspecialchars($base_url) ?>/assets/logo%20instituto.png" alt="Logo Instituto Amparo Digital">
+                <img src="<?= htmlspecialchars($base_url) ?>../../../../assets/Logo infantil.png infantil.png" alt="Logo Voz Infantil">
+                <img src="<?= htmlspecialchars($base_url) ?>../../../../assets/logo instituto.png instituto.png" alt="Logo Instituto Amparo Digital">
             </div>
 
             <!-- CONTEÚDO PRINCIPAL -->
