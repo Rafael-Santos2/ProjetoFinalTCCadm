@@ -7,7 +7,7 @@ $baseUrl = dirname(dirname($_SERVER['PHP_SELF']));
             <!-- LOGOS NO TOPO -->
             <div class="header-footer">
                 <img src="<?= htmlspecialchars($baseUrl) ?>../../../../assets/Logo%20infantil.png" alt="Logo Voz Infantil">
-                <img src="<?= htmlspecialchars($baseUrl) ?>../../../../assets/Logo%20instituto.png" alt="Logo Instituto Amparo Digital">
+                <img src="<?= htmlspecialchars($baseUrl) ?>../../../../assets/logo instituto.png" alt="Logo Instituto Amparo Digital">
             </div>
 
             <!-- CONTEÚDO PRINCIPAL -->
