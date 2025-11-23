@@ -44,7 +44,7 @@ if ($stmt->execute()) {
     echo "2. Altere a senha após o primeiro login<br>";
     echo "3. <strong>DELETE ESTE ARQUIVO AGORA!</strong><br>";
     echo "   Comando: <code>rm " . __FILE__ . "</code><br><br>";
-    echo "🔗 <a href='login.php'>Ir para o Login</a>";
+    echo "🔗 <a href='index.php'>Ir para o Login</a>";
 } else {
     echo "❌ Erro ao criar usuário: " . $stmt->error;
 }
