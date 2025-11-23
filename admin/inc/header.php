@@ -4,12 +4,12 @@ $base_url = getenv('BASE_URL');
 
 // 2. Fallback: Coloque o seu domínio público real do Railway aqui.
 if (!$base_url) {
-    $base_url = 'https://projetofinaltcc-production.up.railway.app'; 
+    $base_url = 'https://projetofinaltccadm-production.up.railway.app'; 
 }
 ?>
 <header class="d-flex flex-wrap">
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand" href="<?= htmlspecialchars($baseUrl) ?>/usuario/index.php"><img src="<?= htmlspecialchars($baseUrl) ?>/assets/Logo%20infantil.png" alt="Logo do site"></a>
+        <a class="navbar-brand" href="<?= htmlspecialchars($base_url) ?>/usuario/index.php"><img src="<?= htmlspecialchars($base_url) ?>/assets/Logo%20infantil.png" alt="Logo do site"></a>
 
         <div class="collapse navbar-collapse" id="menuNav">
         </div>

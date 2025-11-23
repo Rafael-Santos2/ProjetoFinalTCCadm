@@ -2,7 +2,7 @@
 
 // 2. Fallback: Coloque o seu domínio público real do Railway aqui.
 if (!$base_url) {
-    $base_url = 'projetofinaltcc-production.up.railway.app'; 
+    $base_url = 'projetofinaltccadm-production.up.railway.app'; 
 }
 ?>
 <footer class="footer">

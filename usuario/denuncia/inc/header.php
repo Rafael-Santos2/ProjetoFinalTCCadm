@@ -4,7 +4,7 @@ $base_url = getenv('BASE_URL');
 
 // 2. Fallback: Coloque o seu domínio público real do Railway aqui.
 if (!$base_url) {
-    $base_url = 'https://projetofinaltcc-production.up.railway.app'; 
+    $base_url = 'https://projetofinaltccadm-production.up.railway.app'; 
 }
 ?>
 <header class="d-flex flex-wrap">
