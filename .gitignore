@@ -1,0 +1,44 @@
+# ==============================================
+# IGNORAR PASTA DE UPLOADS (MAS MANTER ARQUIVOS IMPORTANTES)
+# ==============================================
+/uploads/*
+!/uploads/.gitkeep
+!/uploads/.htaccess
+!/uploads/index.php
+!/uploads/README.md
+
+# ==============================================
+# CONFIGURAÇÕES LOCAIS
+# (não subir senhas, configs privadas, etc.)
+# ==============================================
+/conexao_local.php
+.env
+
+# ==============================================
+# CACHE, LOGS E OUTROS
+# ==============================================
+*.log
+/tmp/
+.cache/
+
+# ==============================================
+# DEPENDÊNCIAS DE BACK-END (COMPOSER)
+# ==============================================
+/vendor/
+
+# ==============================================
+# DEPENDÊNCIAS FRONT-END (caso use Node)
+# ==============================================
+/node_modules/
+
+# ==============================================
+# ARQUIVOS DO SISTEMA
+# ==============================================
+.DS_Store
+Thumbs.db
+
+# ==============================================
+# AMBIENTES / EDITOR
+# ==============================================
+.vscode/
+.idea/

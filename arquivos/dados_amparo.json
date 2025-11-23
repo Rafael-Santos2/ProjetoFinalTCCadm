@@ -1,0 +1,56 @@
+{
+  "violencia_sexual_infantil": {
+    "2021": {
+      "notificacoes": 35196,
+      "apurados_conselho_tutelar_percent": 58
+    },
+    "2022": {
+      "total_notificacoes": 62091,
+      "menores_19_anos": 45000,
+      "percentual_menores": 73.8,
+      "percentual_meninas": 87.7,
+      "local_abuso": {
+        "residencia": 68.7,
+        "escola": 3.9,
+        "via_publica": 5.3
+      },
+      "tipos_de_violencia": {
+        "estupro": {
+          "2021": 45076,
+          "2022": 51971,
+          "variacao_percent": 15.3
+        },
+        "exploracao_sexual": {
+          "2021": 764,
+          "2022": 889,
+          "variacao_percent": 16.4
+        },
+        "pornografia_infantil": {
+          "2021": 1523,
+          "2022": 1630,
+          "variacao_percent": 7.0
+        },
+        "maus_tratos": {
+          "2021": 19799,
+          "2022": 22527,
+          "variacao_percent": 13.8
+        },
+        "abandono_incapaz": {
+          "2021": 8197,
+          "2022": 9348,
+          "variacao_percent": 14.0
+        }
+      }
+    }
+  },
+  "abandono": {
+    "2015_2023": {
+      "acolhimentos_por_abandono": 27059,
+      "media_mensal": 262,
+      "media_diaria": 8
+    },
+    "2023": {
+      "menores_acolhidos_atualmente": 32869
+    }
+  }
+}

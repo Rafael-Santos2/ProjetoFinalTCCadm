@@ -1,0 +1,37 @@
+# Proteção adicional para área administrativa
+# Restringe acesso apenas a IPs autorizados (opcional)
+
+# Bloquear acesso direto a arquivos de configuração
+<FilesMatch "^(conexao\.php|config\.php)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Headers de segurança
+<IfModule mod_headers.c>
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Impedir listagem de diretório
+Options -Indexes
+
+# Proteção contra injeção de arquivos
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Bloquear acesso a arquivos sensíveis
+    RewriteRule ^inc/ - [F,L]
+    
+    # Redirecionar HTTP para HTTPS (em produção)
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# Limitar tipos de requisições permitidos
+<LimitExcept GET POST>
+    Order Allow,Deny
+    Deny from all
+</LimitExcept>
