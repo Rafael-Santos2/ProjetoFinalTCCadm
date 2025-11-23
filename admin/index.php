@@ -161,16 +161,16 @@ if (isset($_SESSION['usuario_id'])) {
 
         <section class="login-card">
             <div class="login-box">
-                <h2>Área Administrativa</h2>
-                <p style="text-align: center; color: #666; margin-bottom: 30px;">Escolha uma opção para continuar</p>
+                <h2>Área Administrativa - Polícia</h2>
+                <p style="text-align: center; color: #666; margin-bottom: 30px;">Sistema de gerenciamento de denúncias</p>
                 
                 <div class="text-center mt-4">
-                    <a href="login.php" class="btn-login" style="display: inline-block; text-decoration: none; margin-bottom: 15px; width: 100%; max-width: 350px;">Entrar no Sistema</a>
-                    <a href="cadastrar.php" class="btn-secondary" style="display: inline-block; text-decoration: none; width: 100%; max-width: 350px; background: #6c757d; color: #fff; padding: 10px 26px; border-radius: 8px; font-weight: 600;">Cadastrar Novo Usuário</a>
+                    <a href="cadastrar.php" class="btn-login" style="display: inline-block; text-decoration: none; margin-bottom: 15px; width: 100%; max-width: 350px;">Cadastrar Acesso Policial</a>
+                    <a href="login.php" class="btn-secondary" style="display: inline-block; text-decoration: none; width: 100%; max-width: 350px; background: #6c757d; color: #fff; padding: 10px 26px; border-radius: 8px; font-weight: 600;">Já tenho cadastro</a>
                 </div>
                 
                 <p style="text-align: center; color: #999; margin-top: 30px; font-size: 13px;">
-                    Acesso restrito a usuários autorizados
+                    Acesso exclusivo para autoridades policiais
                 </p>
             </div>
         </section>

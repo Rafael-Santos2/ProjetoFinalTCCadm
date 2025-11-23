@@ -14,20 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'] ?? '';
     $senha = $_POST['senha'] ?? '';
 
-    // Credenciais master do delegado (hardcoded para primeiro acesso)
-    $master_email = 'delegado@policia.sp.gov.br';
-    $master_senha = 'Delegado@2025';
-    
-    // Verificar se é o login master
-    if ($email === $master_email && $senha === $master_senha) {
-        $_SESSION['usuario_id'] = 0; // ID especial para master
-        $_SESSION['usuario_nome'] = 'Delegado Master';
-        $_SESSION['usuario_role'] = 'admin';
-        header('Location: dashboard.php');
-        exit;
-    }
-
-    // Login normal no banco de dados
     $sql = "SELECT id, nome, senha_hash, role FROM usuarios WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
