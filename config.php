@@ -32,20 +32,36 @@ if (ENVIRONMENT === 'development') {
     error_reporting(E_ALL);
 } else {
     ini_set('display_errors', 0);
-    error_reporting(0);
+    error_reporting(E_ERROR | E_PARSE);
 }
 
 function getConnection() {
     static $conn = null;
 
     if ($conn === null) {
-        $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME, (int)DB_PORT);
+        try {
+            $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME, (int)DB_PORT);
 
-        if ($conn->connect_error) {
-            die("Erro ao conectar ao banco de dados.");
+            if ($conn->connect_error) {
+                error_log("Erro de conexão MySQL: " . $conn->connect_error);
+                
+                if (ENVIRONMENT === 'development') {
+                    die("Erro ao conectar ao banco de dados: " . $conn->connect_error);
+                } else {
+                    die("Erro ao conectar ao banco de dados. Por favor, tente novamente mais tarde.");
+                }
+            }
+
+            $conn->set_charset("utf8mb4");
+        } catch (Exception $e) {
+            error_log("Exceção na conexão MySQL: " . $e->getMessage());
+            
+            if (ENVIRONMENT === 'development') {
+                die("Erro ao conectar ao banco de dados: " . $e->getMessage());
+            } else {
+                die("Erro ao conectar ao banco de dados. Por favor, tente novamente mais tarde.");
+            }
         }
-
-        $conn->set_charset("utf8mb4");
     }
 
     return $conn;
