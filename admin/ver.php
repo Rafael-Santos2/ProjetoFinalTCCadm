@@ -3,7 +3,7 @@ session_start();
 // incluir conexão centralizada
 include __DIR__ . '/inc/conexao.php';
 if (!isset($_SESSION['usuario_id'])) {
-  header('Location: index.php');
+  header('Location: login.php');
   exit;
 }
 
