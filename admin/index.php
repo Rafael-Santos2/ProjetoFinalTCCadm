@@ -1,40 +1,10 @@
 <?php
 session_start();
-// incluir conexão centralizada
-include __DIR__ . '/inc/conexao.php';
 
 // se já logado, redireciona
 if (isset($_SESSION['usuario_id'])) {
     header('Location: dashboard.php');
     exit;
-}
-
-$msg = '';
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email'] ?? '';
-    $senha = $_POST['senha'] ?? '';
-
-    $sql = "SELECT id, nome, senha_hash, role FROM usuarios WHERE email = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $res = $stmt->get_result();
-    if ($res->num_rows === 1) {
-        $u = $res->fetch_assoc();
-        if (password_verify($senha, $u['senha_hash'])) {
-            // autentica
-            $_SESSION['usuario_id'] = $u['id'];
-            $_SESSION['usuario_nome'] = $u['nome'];
-            $_SESSION['usuario_role'] = $u['role'];
-            header('Location: dashboard.php');
-            exit;
-        } else {
-            $msg = 'Credenciais inválidas';
-        }
-    } else {
-        $msg = 'Credenciais inválidas';
-    }
-    $stmt->close();
 }
 ?>
 <!DOCTYPE html>
@@ -191,21 +161,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <section class="login-card">
             <div class="login-box">
-                <h2>Login Policial</h2>
-                <?php if ($msg) echo '<div class="msg-error">' . htmlspecialchars($msg) . '</div>'; ?>
-                <form method="post" class="mt-2">
-                    <div class="mb-3">
-                        <label class="form-label">Digite seu usuário</label>
-                        <input class="form-control" type="email" name="email" placeholder="Digite o usuario" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Digite sua senha</label>
-                        <input class="form-control" type="password" name="senha" placeholder="Digite a senha" required>
-                    </div>
-                    <div class="text-center mt-4">
-                        <button class="btn-login" type="submit">Entrar</button>
-                    </div>
-                </form>
+                <h2>Área Administrativa</h2>
+                <p style="text-align: center; color: #666; margin-bottom: 30px;">Escolha uma opção para continuar</p>
+                
+                <div class="text-center mt-4">
+                    <a href="login.php" class="btn-login" style="display: inline-block; text-decoration: none; margin-bottom: 15px; width: 100%; max-width: 350px;">Entrar no Sistema</a>
+                    <a href="cadastrar.php" class="btn-secondary" style="display: inline-block; text-decoration: none; width: 100%; max-width: 350px; background: #6c757d; color: #fff; padding: 10px 26px; border-radius: 8px; font-weight: 600;">Cadastrar Novo Usuário</a>
+                </div>
+                
+                <p style="text-align: center; color: #999; margin-top: 30px; font-size: 13px;">
+                    Acesso restrito a usuários autorizados
+                </p>
             </div>
         </section>
     </main>

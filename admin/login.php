@@ -129,10 +129,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             color: #fff;
         }
 
+        .btn-secondary {
+            background: #6c757d;
+            color: #fff;
+            border: none;
+            padding: 10px 26px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+            color: #fff;
+        }
+
         .msg-error {
             color: #c0392b;
             text-align: center;
-            margin-bottom: 12px
+            margin-bottom: 12px;
+            background: #f8d7da;
+            padding: 10px;
+            border-radius: 8px;
         }
 
         @media (max-width:900px) {
@@ -196,7 +216,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <form method="post" class="mt-2">
                     <div class="mb-3">
                         <label class="form-label">Digite seu usuário</label>
-                        <input class="form-control" type="email" name="email" placeholder="Digite o usuario" required>
+                        <input class="form-control" type="email" name="email" placeholder="Digite o email" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Digite sua senha</label>
@@ -204,6 +224,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <div class="text-center mt-4">
                         <button class="btn-login" type="submit">Entrar</button>
+                        <a href="index.php" class="btn-secondary mt-2">Voltar</a>
                     </div>
                 </form>
             </div>

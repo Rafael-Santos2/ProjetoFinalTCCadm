@@ -1,21 +1,19 @@
 <?php
 session_start();
-
-// Verificar se já está logado e se é admin
 include __DIR__ . '/inc/conexao.php';
-
-if (!isset($_SESSION['usuario_id'])) {
-    header('Location: index.php');
-    exit;
-}
-
-// Verificar se tem permissão (apenas admin pode cadastrar novos usuários)
-if ($_SESSION['usuario_role'] !== 'admin') {
-    die('Acesso negado. Apenas administradores podem cadastrar novos usuários.');
-}
 
 $msg = '';
 $msg_tipo = '';
+
+// Verificar se há algum admin logado OU se não existe nenhum usuário no sistema
+$is_logged_admin = isset($_SESSION['usuario_id']) && $_SESSION['usuario_role'] === 'admin';
+$check_users = $conn->query("SELECT COUNT(*) as total FROM usuarios");
+$has_users = ($check_users && $check_users->fetch_assoc()['total'] > 0);
+
+// Se não é admin logado E já existem usuários, bloquear acesso
+if (!$is_logged_admin && $has_users) {
+    die('Acesso negado. Apenas administradores podem cadastrar novos usuários. <a href="login.php">Fazer login</a>');
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome = trim($_POST['nome'] ?? '');
@@ -256,7 +254,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <section class="login-card">
             <div class="login-box">
-                <h2>Cadastrar Novo Usuário</h2>
+                <h2><?= !$has_users ? 'Criar Primeiro Usuário' : 'Cadastrar Novo Usuário' ?></h2>
+                <?php if (!$has_users): ?>
+                    <p style="text-align: center; color: #666; margin-bottom: 20px; font-size: 14px;">
+                        Nenhum usuário encontrado. Crie o primeiro administrador do sistema.
+                    </p>
+                <?php endif; ?>
                 <?php if ($msg): ?>
                     <div class="<?= $msg_tipo === 'success' ? 'msg-success' : 'msg-error' ?>">
                         <?= htmlspecialchars($msg) ?>
@@ -275,6 +278,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <label class="form-label">Senha</label>
                         <input class="form-control" type="password" name="senha" placeholder="Digite a senha (mínimo 6 caracteres)" required>
                     </div>
+                    <?php if ($has_users): ?>
                     <div class="mb-3">
                         <label class="form-label">Tipo de Usuário</label>
                         <select class="form-select" name="role" required>
@@ -283,9 +287,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <option value="operador">Operador</option>
                         </select>
                     </div>
+                    <?php else: ?>
+                    <input type="hidden" name="role" value="admin">
+                    <div class="mb-3">
+                        <p style="color: #666; font-size: 14px; text-align: center; background: #e3f2fd; padding: 10px; border-radius: 8px;">
+                            O primeiro usuário será criado como <strong>Administrador</strong>
+                        </p>
+                    </div>
+                    <?php endif; ?>
                     <div class="text-center mt-4">
                         <button class="btn-login" type="submit">Cadastrar</button>
-                        <a href="dashboard.php" class="btn-secondary mt-2">Voltar ao Dashboard</a>
+                        <a href="index.php" class="btn-secondary mt-2">Voltar</a>
                     </div>
                 </form>
             </div>

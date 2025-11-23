@@ -26,7 +26,7 @@ define('DB_PORT', getEnvVar('MYSQLPORT', '3306'));
 
 $base_url = getEnvVar('BASE_URL', '');
 if (!$base_url) {
-    $base_url = 'https://projetofinaltcc-production.up.railway.app';
+    $base_url = 'https://projetofinaltccadm-production.up.railway.app';
 }
 
 define('BASE_URL', $base_url);

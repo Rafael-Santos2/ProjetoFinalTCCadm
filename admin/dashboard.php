@@ -352,11 +352,6 @@ try {
     <div class="panel-pink">
       <div class="panel-title">
         <h1>Tabela de Denúncias</h1>
-        <div class="d-flex align-items-center gap-2">
-          <?php if ($_SESSION['usuario_role'] === 'admin'): ?>
-            <a href="cadastrar.php" class="btn btn-success btn-sm">+ Novo Usuário</a>
-          <?php endif; ?>
-        </div>
         <div style="min-width:220px; text-align:right;">
           <!-- filtro à direita do título -->
           <form method="get" class="d-flex align-items-center gap-2 justify-content-end">
