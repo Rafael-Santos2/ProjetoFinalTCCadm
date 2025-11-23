@@ -67,5 +67,7 @@ function getConnection() {
     return $conn;
 }
 
-$conn = getConnection();
+// Não conecta automaticamente, apenas quando necessário
+// $conn = getConnection();
+$conn = null;
 ?>
