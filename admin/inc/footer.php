@@ -1,13 +1,18 @@
 <?php
-// Calcula o caminho base relativo a partir da pasta do projeto
-$baseUrl = dirname(dirname($_SERVER['PHP_SELF']));
+// 1. Tenta obter o valor da variável de ambiente 'BASE_URL' do Railway.
+$base_url = getenv('BASE_URL'); 
+
+// 2. Fallback: Coloque o seu domínio público real do Railway aqui.
+if (!$base_url) {
+    $base_url = 'https://projetofinaltccadm-production.up.railway.app'; 
+}
 ?>
 <footer class="footer">
         <div class="container-footer">
             <!-- LOGOS NO TOPO -->
             <div class="header-footer">
-                <img src="<?= htmlspecialchars($baseUrl) ?>../../../../assets/Logo%20infantil.png" alt="Logo Voz Infantil">
-                <img src="<?= htmlspecialchars($baseUrl) ?>../../../../assets/Logo%20instituto.png" alt="Logo Instituto Amparo Digital">
+                <img src="<?= htmlspecialchars($base_url) ?>/assets/Logo%20infantil.png" alt="Logo Voz Infantil">
+                <img src="<?= htmlspecialchars($base_url) ?>/assets/Logo%20instituto.png" alt="Logo Instituto Amparo Digital">
             </div>
 
             <!-- CONTEÚDO PRINCIPAL -->
@@ -21,9 +26,9 @@ $baseUrl = dirname(dirname($_SERVER['PHP_SELF']));
 
                 <div class="links-footer">
                     <ul>
-                        <li><a href="<?= htmlspecialchars($baseUrl) ?>/assets/Politica_de_Privacidade.pdf" target="_blank" rel="noopener noreferrer">Política de Privacidade</a></li>
-                        <li><a href="<?= htmlspecialchars($baseUrl) ?>/assets/Termos_de_Uso.pdf" target="_blank" rel="noopener noreferrer">Termos de Uso</a></li>
-                        <li><a href="<?= htmlspecialchars($baseUrl) ?>/usuario/contato.php">Contato</a></li>
+                        <li><a href="<?= htmlspecialchars($base_url) ?>/assets/Politica_de_Privacidade.pdf" target="_blank" rel="noopener noreferrer">Política de Privacidade</a></li>
+                        <li><a href="<?= htmlspecialchars($base_url) ?>/assets/Termos_de_Uso.pdf" target="_blank" rel="noopener noreferrer">Termos de Uso</a></li>
+                        <li><a href="<?= htmlspecialchars($base_url) ?>/usuario/contato.php">Contato</a></li>
                     </ul>
                 </div>
 
