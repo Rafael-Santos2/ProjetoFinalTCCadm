@@ -26,9 +26,8 @@ if (!$base_url) {
 
                 <div class="links-footer">
                     <ul>
-                        <li><a href="<?= htmlspecialchars($base_url) ?>/assets/Politica_de_Privacidade.pdf" target="_blank" rel="noopener noreferrer">Política de Privacidade</a></li>
-                        <li><a href="<?= htmlspecialchars($base_url) ?>/assets/Termos_de_Uso.pdf" target="_blank" rel="noopener noreferrer">Termos de Uso</a></li>
-                        <li><a href="<?= htmlspecialchars($base_url) ?>/usuario/contato.php">Contato</a></li>
+                        <li><a href="../../assets/Politica_de_Privacidade.pdf" target="_blank" rel="noopener noreferrer">Política de Privacidade</a></li>
+                        <li><a href="../../assets/Termos_de_Uso.pdf" target="_blank" rel="noopener noreferrer">Termos de Uso</a></li>
                     </ul>
                 </div>
 
